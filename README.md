@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Dokumentation für die Abgabe 12.3 biztrips von Kai Wenninger
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Als erstes habe ich das vorgegebene GitLab Repository https://gitlab.com/bbw-m426-group/biztrips-2023 heruntergeladen und auf GitHub gepusht. 
 
-## Available Scripts
+![image](https://github.com/user-attachments/assets/b0b9dbae-7d6d-436c-89ee-9f80dc43bfe3)
 
-In the project directory, you can run:
+Anschliessend habe ich im Internet nach einer möglichen Lösung gesucht und folgendes gefunden auf der Seite Medium. https://medium.com/@ravipatel.it/automating-docker-image-creation-and-push-to-docker-hub-for-a-react-app-using-github-actions-7fa092751fc0
+Dieser Anleitung bin ich gefolgt und ich versuchte auch immer zu verstehen was in dieser Anleitung gemacht wird.
 
-### `npm start`
+# Umsetzung
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Ich habe im Projekt ein Dockerfile hinzugefügt mit folgendem Inhalt.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![image](https://github.com/user-attachments/assets/4ec9b16a-3ace-465a-8cc3-300f88e71ae1)
 
-### `npm test`
+Das Dockerfile baut eine React-Anwendung mit Node.js, erstellt den Produktions-Build und serviert diesen dann mit einem Nginx-Webserver. So wird die Anwendung in einem leichten Webserver bereitgestellt, um sie live zu betreiben.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Kurz darauf habe ich noch ein docker-publish.yml file erstellt mit folgendem Inhalt.
 
-### `npm run build`
+![image](https://github.com/user-attachments/assets/f3bf40bf-7864-4de8-8065-122e83c60f37)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Der Code baut ein Docker-Image, wenn Änderungen auf den main-Branch gepusht werden, und lädt es anschliessend in DockerHub hoch. Dabei wird der Benutzername und das Passwort aus den GitHub-Secrets verwendet.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Hinzufügen von Logindaten (GitHub Secrets) auf GitHub (Actions)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Nun haben wir unseren fertigen Code und wir müssen jetzt noch die Actions in GitHub hinzufügen. Dazu gehen wir auf unser Repository -> Einstellungen -> Secrets and variables -> Actions
 
-### `npm run eject`
+![image](https://github.com/user-attachments/assets/88a8c352-08b1-48e8-a65b-e1ae8ebe04fa)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Hier dann ein neues Secret Repository erstellen.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![image](https://github.com/user-attachments/assets/b386e3a3-fb10-4903-96db-09434c13124c)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Anschliessen USERNMAE und PASSWORD hinzufügen vom Docker Account. 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![image](https://github.com/user-attachments/assets/1e5ba9d4-a2fc-41c7-a2fb-f7b4a7303ffb)
 
-## Learn More
+![image](https://github.com/user-attachments/assets/5ad9caaa-6c9d-4923-83d8-90bf9c55d07f)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Hier kann man sehen das beide hinzugefügt wurden.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![image](https://github.com/user-attachments/assets/8ec49018-d7b8-4e76-bb61-b14164fcb1ec)
 
-### Code Splitting
+Kurze Zeit später, als ich dann alles gepusht habe, konnte ich auf GitHub Actions sehen wie der Build erfolgreich durchgelaufen ist.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![image](https://github.com/user-attachments/assets/e7e3bf0a-d4ba-4e22-ae44-aa8eb3c91033)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
