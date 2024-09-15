@@ -45,4 +45,8 @@ Kurze Zeit später, als ich dann alles gepusht habe, konnte ich auf GitHub Actio
 
 ![image](https://github.com/user-attachments/assets/e7e3bf0a-d4ba-4e22-ae44-aa8eb3c91033)
 
+# Best Practices für CI/CD mit GitHub Actions
 
+1. **Sichere Secrets-Verwaltung**: Verwende GitHub Secrets für Passwörter und API-Keys.
+2. **Automatisches Testen**: Führe Tests automatisch vor dem Deployment aus.
+3. **Effizientes Caching**: Nutze Caching, um Build-Zeiten zu verkürzen.
